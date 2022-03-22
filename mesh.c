@@ -47,6 +47,9 @@ static const char kPropertyList[] = "property list ";
 mesh *
 mesh_load(const char *file)
 {
+    const unsigned kMaxVertexFields = 32;
+    struct FieldAndType fields[kMaxVertexFields];
+    memset(fields, 0, sizeof(fields));
     mesh *const m=malloc(sizeof(*m));
     FILE *const fp=fopen(file, "r");
     if (!m || !fp)
@@ -77,10 +80,6 @@ mesh_load(const char *file)
     }
     if (m->nv <= 0)
 	goto fail;
-
-    const unsigned kMaxVertexFields = 32;
-    struct FieldAndType fields[kMaxVertexFields];
-    memset(fields, 0, sizeof(fields));
 
     int xField = -1, yField = -1, zField = -1;
     int nxField = -1, nyField = -1, nzField = -1;

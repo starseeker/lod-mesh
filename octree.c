@@ -66,7 +66,7 @@ static octree_node *
 build(int lo, int hi, unsigned char depth,
       vec3 verts[], int itable[], mesh *mesh)
 {
-    octree_node *o, *so;
+    octree_node *o = NULL, *so = NULL;
     vec3 min, max, cen, span, d, dia1, dia2;
     real rad, rad2, p, q;
     int i, j, mini[3], maxi[3];
@@ -81,7 +81,7 @@ build(int lo, int hi, unsigned char depth,
 	   verts[lo][2]==verts[hi][2])
 	hi--;
 
-    o = malloc(sizeof(*o));
+    o = malloc(sizeof(octree_node));
     o->status = STATUS_INACTIVE;
     o->depth = depth;
     o->testid = 0; /* XXX */
